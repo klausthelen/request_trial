@@ -3,13 +3,13 @@ import json
 
 print("-------Requests-------")
 
-google = requests.get("http://google.com")
+isitchristmas = requests.get("https://isitchristmas.com/")
 
 print("-------Google Response-------")
-print(google)
+print(isitchristmas)
 
-outfile = open("googlehtml.html", "w")
-outfile.write(str(google.text.encode('utf-8')))
+outfile = open("isitchristmas.html", "w")
+outfile.write(str(isitchristmas.text.encode('utf-8')))
 
 httpbinurl = "http://httpbin.org"
 
