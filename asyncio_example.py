@@ -22,11 +22,13 @@ async def as_requests(url):
             print("--------------- End -----------")
 
 async def main():
-    responseb = loop.create_task(as_requests(httpbinurl + "/basic-auth/" + str(httpbinuser) + "/" + str(httpbinpass)))
+    # responseb = loop.create_task(as_requests(httpbinurl + "/basic-auth/" + str(httpbinuser) + "/" + str(httpbinpass)))
     responsec = loop.create_task(as_requests(httpbinurl + "/uuid"))
     responsed = loop.create_task(as_requests(httpbinurl + "/delay/5"))
+    responsee = loop.create_task(as_requests(httpbinurl + "/delay/2"))
+    responsef = loop.create_task(as_requests(httpbinurl + "/delay/9"))
     responsea = loop.create_task(as_requests(httpbinurl + "/get"))
-    await asyncio.wait([responsea,responseb,responsec,responsed])
+    await asyncio.wait([responsea,responsec,responsed, responsee, responsef])
 
 try:
     loop = asyncio.get_event_loop()

@@ -9,7 +9,7 @@ tx_value = 20000
 currency  = "COP"
 
 signature = str(apiKey)+"~"+str(merchantid)+"~"+str(referenceCode)+"~"+str(tx_value)+"~"+str(currency)
-signature_md5 = hashlib.md5(signature).hexdigest()
+signature_md5 = hashlib.md5(signature.encode('utf-8')).hexdigest()
 
 ping_data = {
    "test": False,

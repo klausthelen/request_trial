@@ -1,2 +1,3 @@
 .vscode/
 ignore.py
+__pycache__/*
