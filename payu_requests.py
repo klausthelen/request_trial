@@ -2,7 +2,7 @@ import requests
 import json
 import aiohttp
 import asyncio
-from req_data import (ping_data, payment_metods_data, submit_transaction_data)
+from req_data import (get_ping_data, get_payment_metods_data, get_submit_transaction_data)
 
 payu_host = "sandbox.api.payulatam.com"
 
@@ -35,9 +35,18 @@ async def as_post_requests(url, data, headers):
             print("--------------- End -----------")
 
 async def trans():
-    submit_trans_req = loop.create_task(as_post_requests(payments_api_url, submit_transaction_data, PAYU_HEADERS))
-    payment_metods = loop.create_task(as_post_requests(payments_api_url, payment_metods_data, PAYU_HEADERS))
-    await asyncio.wait([submit_trans_req, payment_metods])
+    submit_trans_req_1 = loop.create_task(as_post_requests(payments_api_url, get_submit_transaction_data("CARD"), PAYU_HEADERS))
+    submit_trans_req_2 = loop.create_task(as_post_requests(payments_api_url, get_submit_transaction_data("CARD"), PAYU_HEADERS))
+    submit_trans_req_3 = loop.create_task(as_post_requests(payments_api_url, get_submit_transaction_data("EFECTY"), PAYU_HEADERS))
+    submit_trans_req_4 = loop.create_task(as_post_requests(payments_api_url, get_submit_transaction_data("EFECTY"), PAYU_HEADERS))
+    submit_trans_req_5 = loop.create_task(as_post_requests(payments_api_url, get_submit_transaction_data("EFECTY"), PAYU_HEADERS))
+    submit_trans_req_6 = loop.create_task(as_post_requests(payments_api_url, get_submit_transaction_data("CARD"), PAYU_HEADERS))
+    await asyncio.wait(
+        [submit_trans_req_1,
+        submit_trans_req_2,
+        submit_trans_req_4,
+        submit_trans_req_5,
+        submit_trans_req_6])
 
 
 def post_request(url, data, headers):
